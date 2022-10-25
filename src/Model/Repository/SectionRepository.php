@@ -15,7 +15,7 @@ class SectionRepository extends AbstractRepository {
             );
     }
     function getNomTable(): string {
-        return "TextesQuestions";
+        return "Sections";
     }
 
     function getNomClePrimaire(): string {

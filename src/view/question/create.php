@@ -14,27 +14,14 @@
         </div>
 
         <p class="text-center my-6">Organisation</p>
-        <div class="flex flex-col">
-            <label for="systeme_vote_id">Section 1 :</label>
-            <input type="text" placeholder="Activité" name="section1" id="systeme_vote_id" required/>
-        </div>
-        <div class="flex flex-col">
-            <label for="systeme_vote_id">Section 2 :</label>
-            <input type="text" placeholder="Organisation" name="section2" id="systeme_vote_id"/>
-        </div>
-        <div class="flex flex-col">
-            <label for="systeme_vote_id">Section 3 :</label>
-            <input type="text" placeholder="..." name="section3" id="systeme_vote_id"/>
-        </div>
-        <div class="flex flex-col">
-            <label for="systeme_vote_id">Section 4 :</label>
-            <input type="text" placeholder="..." name="section4" id="systeme_vote_id"/>
-        </div>
-        <div class="flex flex-col">
-            <label for="systeme_vote_id">Section 5 :</label>
-            <input type="text" placeholder="..." name="section5" id="systeme_vote_id"/>
-        </div>
-
+        <?php
+            for ($i = 1; $i <= $nbSections; $i++) {
+                echo '<div class="flex flex-col">
+                <label for="systeme_vote_id' . $i . '">Section ' . $i . ' :</label>
+                <input type="text" placeholder="Nom de la section" name="section' . $i .'" id="systeme_vote_id'. $i . '" required/>
+            </div>';
+            }
+        ?>
         <p class="text-center my-6">Calendrier</p>
         <div class="flex gap-10 items-end">
             <p class="w-36 font-semibold">Période d'écriture :</p>
@@ -58,21 +45,15 @@
                 <input type="date" name="dateFinVote" id="date_fin_vote_id" required/>
             </div>
         </div>
-
-<!--        <p>-->
-<!--            <label for="categorie_id">idCategorie</label> :-->
-<!--            <input type="number" placeholder="1" name="idCategorie" id="categorie_id" required/>-->
-<!--        </p>-->
         <p class="text-center my-6">Votant</p>
-        <p>
+        <div>
             <label for="login_id">login</label> :
             <input type="text" placeholder="tjean" name="login" id="login_id" required/>
-        </p>
+        </div>
     </div>
-    <p>
-        <input type="number" hidden value="1" placeholder="1" name="idCategorie" id="categorie_id" required/>
+    <div>
         <input type="text" hidden value="visible" placeholder="visible" name="visibilite" id="visibilite_id" required/>
         <input class="p-2 text-white bg-main font-semibold rounded-lg" type="submit" value="Créer le vote" />
-    </p>
+    </div>
 
 </form>

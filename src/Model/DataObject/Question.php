@@ -12,7 +12,6 @@ class Question extends AbstractDataObject {
     private string $dateFinQuestion;
     private string $dateDebutVote;
     private string $dateFinVote;
-    private int $idCategorie;
     private string $login;
 
 
@@ -25,7 +24,6 @@ class Question extends AbstractDataObject {
         string $dateFinQuestion,
         string $dateDebutVote,
         string $dateFinVote,
-        int    $idCategorie,
         string $login)
     {
         $this->idQuestion = $idQuestion;
@@ -36,7 +34,6 @@ class Question extends AbstractDataObject {
         $this->dateFinQuestion = $dateFinQuestion;
         $this->dateDebutVote = $dateDebutVote;
         $this->dateFinVote = $dateFinVote;
-        $this->idCategorie = $idCategorie;
         $this->login = $login;
     }
 
@@ -51,7 +48,6 @@ class Question extends AbstractDataObject {
             "dateFinQuestion" => $this->getDateFinQuestion(),
             "dateDebutVote" => $this->getDateDebutVote(),
             "dateFinVote" => $this->getDateFinVote(),
-            "idCategorie" => $this->getIdCategorie(),
             "login" => $this->getLogin()
         );
     }
@@ -88,10 +84,6 @@ class Question extends AbstractDataObject {
     public function getDateFinVote(): string { return $this->dateFinVote; }
 
     public function setDateFinVote(string $dateFinVote): void { $this->dateFinVote = $dateFinVote; }
-
-    public function getIdCategorie(): int { return $this->idCategorie; }
-
-    public function setIdCategorie(int $idCategorie): void { $this->idCategorie = $idCategorie; }
 
     public function getLogin(): string { return $this->login; }
 
