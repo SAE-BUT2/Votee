@@ -16,6 +16,14 @@ main {
 	background-repeat: no-repeat;
 }
 
+.proposition-markdown * {
+	font-size: revert;
+	font-weight: revert;
+	list-style: revert;
+	margin: revert;
+	padding: revert;
+}
+
 /* Quelques classes pour des couleurs utile */ 
 .text-dark {
     color: #2E3436;
