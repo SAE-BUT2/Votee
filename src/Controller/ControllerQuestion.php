@@ -10,6 +10,7 @@ use App\Votee\Model\Repository\QuestionRepository;
 use App\Votee\Model\Repository\SectionRepository;
 use App\Votee\Model\Repository\TexteRepository;
 use App\Votee\Model\Repository\UtilisateurRepository;
+use App\Votee\parsedown\Parsedown;
 
 class ControllerQuestion extends AbstractController {
 
@@ -114,7 +115,7 @@ class ControllerQuestion extends AbstractController {
         }
     }
 
-    public static function updateQuestion(): void { //TODO
+    public static function updateQuestion(): void {
         $question = (new QuestionRepository())->select($_GET['idQuestion']);
         self::afficheVue('view.php',
             ["question" => $question,
@@ -125,7 +126,7 @@ class ControllerQuestion extends AbstractController {
 
     }
 
-    public static function updatedQuestion(): void { //TODO
+    public static function updatedQuestion(): void {
         $isOk =  (new QuestionRepository())->modifierQuestion($_GET['idQuestion'], $_GET['description'], 'visible');
         if ($isOk) {
             self::afficheVue('view.php',
@@ -156,15 +157,23 @@ class ControllerQuestion extends AbstractController {
         }
     }
 
-    public static function createdProposition(): void {
+    public static function createdProposition(): void { //TODO
         $idProposition = (new PropositionRepository())->ajouterProposition('visible');
         $isOk = true;
         for ($i = 0; $i < $_POST['nbSections'] && $isOk; $i++) {
+            $parsedown = new Parsedown();
+            $textsection =  $_POST['section'.$i];
+
+            file_put_contents('section.txt', $textsection);
+            $texteMD = file_get_contents('section.txt');
+            $t = $parsedown->text($texteMD);
+
             $texte = new Texte(
                 $_POST['idQuestion'],
                 $_POST['idSection'.$i],
                 $idProposition,
-                $_POST['section'.$i],
+                $t,
+//                $_POST['section'.$i],
                 NULL
             );
             $isOk = (new TexteRepository())->sauvegarder($texte);
